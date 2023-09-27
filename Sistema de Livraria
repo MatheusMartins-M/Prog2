@@ -1,0 +1,43 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner teclado = new Scanner(System.in);
+        ArrayList <Livros> livraria = new ArrayList();
+
+        int escolha = -1;
+
+        while (escolha != 0){
+            mostraMenu();
+            escolha = teclado.nextInt();
+
+            switch (escolha){
+                case 1 -> cadastraNovo();
+                case 2 -> listaLivros();
+                case 3 -> buscaNome();
+                case 4 -> buscaCategoria();
+                case 5 -> buscaPreco();
+                case 6 -> buscaEstoque();
+                case 7 -> valorEstoque();
+                case 0 -> encerraTudo();
+                default -> System.out.println("\nOpção inválida. Tente novamente\n");
+            }
+        }
+
+    }
+    static void mostraMenu(){
+        System.out.println(">>>>>>>>>>>>>>>>>> MENU <<<<<<<<<<<<<<<<<<<<");
+        System.out.println("1 - Cadastrar novo livro");
+        System.out.println("2 - Listar livros");
+        System.out.println("3 - Buscar livros por nome");
+        System.out.println("4 - Buscar livros por categoria");
+        System.out.println("5 - Buscar livros por preço");
+        System.out.println("6 - Buscar livros por quantidade em estoque");
+        System.out.println("7 - Valor total em estoque");
+        System.out.println("0 - Encerrar atividades");
+    }
+    static void cadastraNovo(){
+        add.
+    }
+}
