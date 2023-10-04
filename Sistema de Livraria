@@ -2,15 +2,15 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Main {
+    static ArrayList <Livraria> cadastroLivros = new ArrayList <>();
+    static Scanner teclado = new Scanner(System.in);
+    static int escolha = -1;
     public static void main(String[] args) {
-        Scanner teclado = new Scanner(System.in);
-        ArrayList <Livros> livraria = new ArrayList();
-
-        int escolha = -1;
 
         while (escolha != 0){
             mostraMenu();
             escolha = teclado.nextInt();
+            System.out.println();
 
             switch (escolha){
                 case 1 -> cadastraNovo();
@@ -36,8 +36,167 @@ public class Main {
         System.out.println("6 - Buscar livros por quantidade em estoque");
         System.out.println("7 - Valor total em estoque");
         System.out.println("0 - Encerrar atividades");
+        System.out.print("Escolha: ");
     }
+
     static void cadastraNovo(){
-        add.
+        cadastroLivros.add(new Livraria());
+    }
+    static void listaLivros(){
+        for (Livraria cadastros : cadastroLivros) {
+            System.out.println(">>>>> Cod#" + cadastros.codigo);
+            System.out.println("Título/Editora: " + cadastros.titulo + "/" + cadastros.editora);
+            System.out.println("Categoria: " + cadastros.area);
+            System.out.println("Ano: " + cadastros.ano);
+            System.out.printf("Valor: R$%.2f \n", cadastros.valor);
+            System.out.println("Estoque: " + cadastros.quantidadeEstoque);
+            System.out.printf("Valor total em estoque: %.2f \n", cadastros.calculaValor());
+            System.out.println();
+        }
+    }
+    static void buscaNome(){
+        String nomeLivro;
+
+        System.out.print("Insira o nome do livro: ");
+        nomeLivro = teclado.nextLine();
+        nomeLivro = teclado.nextLine();
+        System.out.println();
+
+        for(Livraria buscaLivro : cadastroLivros){
+            if(nomeLivro.equals(buscaLivro.titulo)){
+                System.out.println(">>>>> Cod#" + buscaLivro.codigo);
+                System.out.println("Título/Editora: " + buscaLivro.titulo + "/" + buscaLivro.editora);
+                System.out.println("Categoria: " + buscaLivro.area);
+                System.out.println("Ano: " + buscaLivro.ano);
+                System.out.printf("Valor: R$%.2f \n", buscaLivro.valor);
+                System.out.println("Estoque: " + buscaLivro.quantidadeEstoque);
+                System.out.printf("Valor total em estoque: %.2f \n", buscaLivro.calculaValor());
+                System.out.println();
+            }
+        }
+
+        System.out.println();
+    }
+    static void buscaCategoria(){
+        String nomeCategoria;
+
+        System.out.print("Insira a categoria desejada: ");
+        nomeCategoria = teclado.nextLine();
+        nomeCategoria = teclado.nextLine();
+        System.out.println();
+
+        for(Livraria buscaCategoria : cadastroLivros){
+            if(nomeCategoria.equals(buscaCategoria.area)){
+                System.out.println(">>>>> Cod#" + buscaCategoria.codigo);
+                System.out.println("Título/Editora: " + buscaCategoria.titulo + "/" + buscaCategoria.editora);
+                System.out.println("Categoria: " + buscaCategoria.area);
+                System.out.println("Ano: " + buscaCategoria.ano);
+                System.out.printf("Valor: R$%.2f \n", buscaCategoria.valor);
+                System.out.println("Estoque: " + buscaCategoria.quantidadeEstoque);
+                System.out.printf("Valor total em estoque: %.2f \n", buscaCategoria.calculaValor());
+                System.out.println();
+            }
+        }
+
+        System.out.println();
+    }
+    static void buscaPreco(){
+        int preco;
+
+        System.out.print("Insira o máximo de valor do livro: ");
+        preco = teclado.nextInt();
+        System.out.println();
+
+        for(Livraria buscaPreco : cadastroLivros){
+            if(preco > buscaPreco.valor){
+                System.out.println(">>>>> Cod#" + buscaPreco.codigo);
+                System.out.println("Título/Editora: " + buscaPreco.titulo + "/" + buscaPreco.editora);
+                System.out.println("Categoria: " + buscaPreco.area);
+                System.out.println("Ano: " + buscaPreco.ano);
+                System.out.printf("Valor: R$%.2f \n", buscaPreco.valor);
+                System.out.println("Estoque: " + buscaPreco.quantidadeEstoque);
+                System.out.printf("Valor total em estoque: %.2f \n", buscaPreco.calculaValor());
+                System.out.println();
+            }
+        }
+    }
+    static void buscaEstoque(){
+        int minEstoque;
+
+        System.out.print("Insira o valor mínimo de estoque: ");
+        minEstoque = teclado.nextInt();
+
+        for(Livraria buscaPreco : cadastroLivros){
+            if(minEstoque < buscaPreco.calculaValor()){
+                System.out.println(">>>>> Cod#" + buscaPreco.codigo);
+                System.out.println("Título/Editora: " + buscaPreco.titulo + "/" + buscaPreco.editora);
+                System.out.println("Categoria: " + buscaPreco.area);
+                System.out.println("Ano: " + buscaPreco.ano);
+                System.out.printf("Valor: R$%.2f \n", buscaPreco.valor);
+                System.out.println("Estoque: " + buscaPreco.quantidadeEstoque);
+                System.out.printf("Valor total em estoque: %.2f \n", buscaPreco.calculaValor());
+                System.out.println();
+            }
+        }
+    }
+    static void valorEstoque(){
+        double calculoTotal = 0;
+
+        for(Livraria valorTotal : cadastroLivros){
+            calculoTotal += valorTotal.calculaValor();
+        }
+
+        System.out.printf("O valor total do estoque é: @.2f\n", calculoTotal);
+    }
+    static void encerraTudo(){
+        System.out.println("Programa encerrado!");
+        escolha = 0;
+    }
+}
+
+public class Livraria {
+    String titulo, editora, area;
+    int codigo, ano, quantidadeEstoque;
+    double valor;
+
+    public Livraria(){
+        Scanner teclado  = new Scanner(System.in);
+
+        System.out.print("Qual o título do livro? ");
+        this.titulo = teclado.nextLine();
+        System.out.println();
+
+        System.out.print("Qual a editora do livro? ");
+        this.editora = teclado.nextLine();
+        System.out.println();
+
+        System.out.print("Qual a área do livro? ");
+        this.area = teclado.nextLine();
+        System.out.println();
+
+        System.out.print("Qual o código do livro? ");
+        this.codigo = teclado.nextInt();
+        System.out.println();
+
+        System.out.print("Qual o ano de lançamento do livro? ");
+        this.ano = teclado.nextInt();
+        System.out.println();
+
+        System.out.print("Qual o valor do livro? ");
+        this.valor = teclado.nextDouble();
+        System.out.println();
+
+        System.out.print("Quantos possui em estoque? ");
+        this.quantidadeEstoque = teclado.nextInt();
+        System.out.println();
+
+    }
+    public double calculaValor(){
+        double calculo;
+
+        calculo = valor * quantidadeEstoque;
+
+        return calculo;
+
     }
 }
