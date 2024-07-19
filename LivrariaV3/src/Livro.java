@@ -2,6 +2,7 @@ import java.util.Scanner;
 public class Livro {
     String titulo, editora, area, codigoFilial;
     int codigoLivro, ano, quantidadeEstoque;
+
     double valor;
 
     public Livro(String codigoFilial) {
